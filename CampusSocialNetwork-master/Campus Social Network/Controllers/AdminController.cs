@@ -55,7 +55,14 @@ namespace Campus_Social_Network.Controllers
 
         public ActionResult AllStudents()
         {
-            return View();
+            List<Add_Student> person_temp_lst = new List<Add_Student>();
+            Database1Entities db = new Database1Entities();
+            List<Add_Student> person_list = db.Add_Student.ToList();
+            foreach (Add_Student s in person_list)
+            {
+                person_temp_lst.Add(s);
+            }
+            return View(person_temp_lst);
         }
 
         public ActionResult AllTeachers()
@@ -72,6 +79,25 @@ namespace Campus_Social_Network.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult UpdateProfile(AdminProfileUpdate item)
+        {
+            // TODO: Add delete logic here
+            using (Database1Entities db = new Database1Entities())
+            {
+                List<AdminProfileUpdate> contact_list = db.AdminProfileUpdates.ToList();
+                foreach (AdminProfileUpdate s in contact_list)
+                {
+                    db.AdminProfileUpdates.Remove(s);
+                    db.SaveChanges();
+                }
+
+                db.AdminProfileUpdates.Add(item);
+                db.SaveChanges();
+                var result = "Successfully added";
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+        }
         public ActionResult ChangePassword()
         {
             return View();
@@ -80,6 +106,40 @@ namespace Campus_Social_Network.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult ChangePicture(AdminUpdateImagePath item)
+        {
+            using (Database1Entities db = new Database1Entities())
+            {
+                List<AdminUpdateImagePath> contact_list = db.AdminUpdateImagePaths.ToList();
+                foreach (AdminUpdateImagePath s in contact_list)
+                {
+                    db.AdminUpdateImagePaths.Remove(s);
+                    db.SaveChanges();
+                }
+                var folderPath = Server.MapPath("~/AppFile/Images");
+                System.IO.DirectoryInfo folderInfo = new DirectoryInfo(folderPath);
+
+                foreach (FileInfo file in folderInfo.GetFiles())
+                {
+                    file.Delete();
+                }
+                foreach (DirectoryInfo dir in folderInfo.GetDirectories())
+                {
+                    dir.Delete(true);
+                }
+                string fileName = Path.GetFileNameWithoutExtension(item.ProfilePic.FileName);
+                string extension = Path.GetExtension(item.ProfilePic.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssff") + extension;
+                item.ImagePath = "~/AppFile/Images" + fileName;
+                item.ProfilePic.SaveAs(Path.Combine(Server.MapPath("~/AppFile/Images"), fileName));
+                db.AdminUpdateImagePaths.Add(item);
+                db.SaveChanges();
+                var result = "Successfully added";
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+        }
+
 
 
 

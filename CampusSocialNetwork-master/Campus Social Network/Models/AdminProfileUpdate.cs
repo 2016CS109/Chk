@@ -15,7 +15,7 @@ namespace Campus_Social_Network.Models
 using System;
     using System.Collections.Generic;
     
-public partial class Add_Student
+public partial class AdminProfileUpdate
 {
 
     public int Id { get; set; }
@@ -24,18 +24,10 @@ public partial class Add_Student
 
     public string LastName { get; set; }
 
-    public string DateOfBirth { get; set; }
-
-    public string PicUrl { get; set; }
-
-    public string RegisterationNumber { get; set; }
-
-    public string Class { get; set; }
-
     public string Email { get; set; }
 
     public string Password { get; set; }
-        public System.Web.HttpPostedFileBase ProfilePic { get; set; }
-    }
+
+}
 
 }

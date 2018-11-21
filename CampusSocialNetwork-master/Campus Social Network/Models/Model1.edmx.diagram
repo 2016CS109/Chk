@@ -6,6 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="9b759fa8a9804895a74dabc8502cb41e" Name="Diagram1">
         <EntityTypeShape EntityType="Database1Model.Add_Student" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.AdminProfileUpdate" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Database1Model.AdminUpdateImagePath" Width="1.5" PointX="3.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

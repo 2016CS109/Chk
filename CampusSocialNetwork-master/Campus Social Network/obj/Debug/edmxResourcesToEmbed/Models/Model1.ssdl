@@ -14,7 +14,26 @@
     <Property Name="Email" Type="varchar" MaxLength="150" />
     <Property Name="Password" Type="varchar" MaxLength="150" />
   </EntityType>
+  <EntityType Name="AdminProfileUpdate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="150" />
+    <Property Name="LastName" Type="varchar" MaxLength="150" />
+    <Property Name="Email" Type="varchar" MaxLength="150" />
+    <Property Name="Password" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="AdminUpdateImagePath">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImagePath" Type="varchar(max)" />
+  </EntityType>
   <EntityContainer Name="Database1ModelStoreContainer">
     <EntitySet Name="Add_Student" EntityType="Self.Add_Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AdminProfileUpdate" EntityType="Self.AdminProfileUpdate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AdminUpdateImagePath" EntityType="Self.AdminUpdateImagePath" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

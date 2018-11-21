@@ -16,5 +16,24 @@
   </EntityType>
   <EntityContainer Name="Database1Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Add_Student" EntityType="Self.Add_Student" />
+    <EntitySet Name="AdminProfileUpdates" EntityType="Database1Model.AdminProfileUpdate" />
+    <EntitySet Name="AdminUpdateImagePaths" EntityType="Database1Model.AdminUpdateImagePath" />
   </EntityContainer>
+  <EntityType Name="AdminProfileUpdate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="AdminUpdateImagePath">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>
